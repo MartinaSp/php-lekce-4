@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <br>
@@ -22,12 +23,24 @@
                 <th>Celková cena</th>
             </tr>
         </thead>
+
+<?php 
+$handle = fopen('objednavky.csv', 'r');
+if ($handle) {
+    while (($line = fgets($handle, 4096)) !== false) {
+        $row = explode(';', $line);
+?>
         <tr>
-            <td>123</td>
-            <td>Josef</td>
-            <td>1.1.2000</td>
-            <td>0 Kč</td>
+            <td><?php echo $row[0]; ?></td>
+            <td><?php echo $row[3]; ?></td>
+            <td><?php echo $row[2]; ?></td>
+            <td><?php echo $row[1]; ?> Kč</td>
         </tr>
+<?php
+    }
+}
+?>
+
     </table>
 </div>
 </body>
